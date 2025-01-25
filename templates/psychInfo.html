@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Psychiatrist Info</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body id="psychbody">
+        <nav class="navbarDiv">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="{% static 'img/psychbuddy.png' %}" alt="logo">
+                </div>
+                <div class="logotxt">
+                    <span id="logotxtid">Psych</span>buddy
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li id="currentPage"><a href="homepage">Home</a></li>
+                        <li><a href="GIA">GIA</a></li>
+                        <li id="resources">Resources
+                        <div class="resources-menu">
+                            <ul>
+                                <li><a href="sessions">Video Sessions</a></li>
+                                <li><a href="relaxation">Audio Therapy</a></li>
+                                <a href="forum"><li>Forum</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="extras">Extras
+                        <div class="extras-menu">
+                            <ul>
+                            <li><a href="wellnessLog">Journal</a></li><br>
+                            <li><a href="tips">Tips</a></li>
+                            <a href="news"><li>News</li></a>
+                            <a href="YM"><li>Yoga & Meditation</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="therapist">Therapist</li>
+                        <a href="aboutus"><li>About Us</li></a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% if myinfo %}
+        {% for data in myinfo %}
+        <div class="mainDiv">
+            <div class="psychDivI">
+                <img src="{% static data.picture %}">
+                <h2>{{data.name}}</h2>
+            </div>
+            <div class="psychDivII">
+                <h2><span>Psych</span>atrist Information</h2>
+                <ul>
+                    <li><b>Psychiatrist Name:</b> {{data.name}}</li>
+                    <li><b>Education:</b> {{data.education}}</li>
+                    <li><b>Location:</b> {{data.location}}</li>
+                    <li><b>Experience:</b> {{data.experience}}</li>
+                    <li><b>Google Rating:</b> {{data.rating}}</li>
+                    <li><b>Contact:</b> {{data.contact}}</li>
+                    <li><b>Email:</b> {{data.email}}</li>
+                    <li><b>Description:</b> {{data.description}}</li>
+                    <form action="psychinfo" method="POST">
+                        {%csrf_token%}
+                    <button name="appointmentBtn" value="BookAppointment">Book Appointment -></button>
+                    </form>
+                </ul>
+                </div>
+        </div>
+        {%endfor%}
+        {%else%}
+        <p>No data Found</p>
+        {%endif%}
+        
+        <div class="footer">
+            <div class="caption">
+                <h3>Follow Me On</h3>
+            </div>
+            <div class="social-logos">
+                <a href="whatsapp" target="_blank"><img src="{% static 'img/whatsapp.png' %}" alt="whatsapp" id="whatsapp"></a>
+                <a href="instagram" target="_blank"><img src="{% static 'img/instagram.png' %}" alt="instagram" id="instagram"></a>
+                <a href="facebook" target="_blank"><img src="{% static 'img/facebook.png' %}" alt="facebook" id="facebook"></a>
+            </div>
+            <div class="creator-msg">
+                <p>Crafted with <span id="heart">❤️</span> by GT</p>
+            </div>
+        </div>
+    </body>
+</html>

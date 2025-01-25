@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Admin Panel</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    </head>
+    <body>
+        <div class="adminflexbar">
+            <div class="leftSidebar">
+                <h2>Psychbuddy Admin Dashboard</h2>
+                <p>Welcome Back GT!</p>
+                <ul>
+                    <a href="usersNav"><li>Users</li></a>  
+                    <a href="manageResources"><li>Resources Management</li></a>
+                    <a href="admintips"><li>Tips</li></a>
+                    <a href="adminforum"><li>Community Forum</li></a>
+                    <a href="appointmentmail"><li>Appointment</li></a>
+                    <a href="feedbackinfo"><li>Feedback</li></a>
+                    <a href="adminlogout"><li>Logout</li></a>
+                    </ul>
+                <div class="creatorline">
+                    <p>Crafted with &hearts; by GT</p>
+                </div>
+            </div>
+            <div class="rightSidebar">
+                <h2>Audio Resources Insertion Form</h2><br>
+                <div class="myform">
+                    <form name="uploadForm" action="audioRes" method="POST" enctype="multipart/form-data" onsubmit="return validate()">
+                        {%csrf_token%}
+                        <div class="formElements">
+                        <label class="lbl">Audio Therapy Name:</label><br>
+                        <input type="text" name="audioname" required><br>
+                        <label class="lbl">Audio Therapy Image:</label><br>
+                        <input type="file" name="audioimgpath" required>
+                                <br>
+                        <label class="lbl">Select File:</label><br>
+                        <input type="file" name="audiofilepath" required><br>
+                        <label class="lbl">Audio Therapy Description:</label>
+                        <br>
+                        <textarea name="audiodesc" required></textarea><br>
+                        <input type="submit" name="upload" value="Upload">
+                    </div>
+                        </form>
+            </div>
+            <script>
+    function validate() {
+        const audioName = document.forms["uploadForm"]["audioname"].value.trim();
+        const audioFile = document.forms["uploadForm"]["audiofilepath"].value.trim();
+        const audioDesc = document.forms["uploadForm"]["audiodesc"].value.trim();
+        const audioimgfile = document.forms["uploadForm"]["audioimgpath"].value.trim();
+        const namePatt = /^[A-Za-z0-9\s\-_,.]{3,100}$/;
+        const filePatt =  /\.(mp3|wav|ogg|flac|aac)$/i;
+        const imgFilePatt = /\.(jpg|jpeg|png|webp)$/i;
+        const descPatt = /^[a-zA-Z0-9%*.+\-!@#$&?\s]{20,1000}$/;
+        if (!namePatt.test(audioName)) {
+            alert("Audio Therapy Name must be between 3 and 100 characters and can only include alphanumeric and common symbols.");
+            return false;
+        }
+        if (!filePatt.test(audioFile)) {
+            alert("Please upload a valid Audio file (mp3|wav|ogg|flac|aac).");
+            return false;
+        }
+        if (!descPatt.test(audioDesc)) {
+            alert("Audio Therapy Description must be between 10 and 1000 characters.");
+            return false;
+        }
+        if(!imgfilePatt.test(audioimgfile)){
+            alert("Please upload valif audio file images (jpg, jpeg, webp, png)");
+            return false;
+        }
+        return true;
+    }
+</script>
+</body>
+</html>

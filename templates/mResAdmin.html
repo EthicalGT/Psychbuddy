@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychbuddy Admin Panel</title>
+    <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+</head>
+<body>
+    <div class="adminflexbar">
+        <div class="leftSidebar">
+            <h2>Psychbuddy Admin Dashboard</h2>
+            <p>Welcome Back GT!</p>
+            <ul>
+                <a href=""><li>Platform Statistics</li></a>
+                <a href="usersNav"><li>Users</li></a>
+                <a href=""><li>Resources Management</li></a>
+                <a href=""><li>Tips</li></a>
+                <a href=""><li>Community Forum</li></a>
+                <a href=""><li>Appointment</li></a>
+                <a href=""><li>Feedback</li></a>
+                <a href=""><li>Notification</li></a>
+                <a href=""><li>Logout</li></a>
+            </ul>
+            <div class="creatorline">
+                <p>Crafted with &hearts; by GT</p>
+            </div>
+        </div>
+        <div class="rightSidebar">
+            <h2>Meditation</h2>
+            <div class="myform2" style="display: block;">
+                <form name="uploadForm" action="mRes" method="POST" enctype="multipart/form-data" onsubmit="return validate()">
+                    {% csrf_token %}
+                    <div class="formElements">
+                        <label class="lbl">Meditation Name:</label><br>
+                        <input type="text" name="Mname" required><br>
+                        <label class="lbl">Meditation Description:</label><br>
+                        <textarea name="Mdesc"></textarea><br>
+                        <input type="submit" name="upload" value="Upload">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function validate() {
+            const mName = document.forms["uploadForm"]["mname"].value.trim();
+            const mDesc = document.forms["uploadForm"]["Mdesc"].value.trim();
+
+            const namePatt = /^[A-Za-z0-9\s\-_,.]{3,100}$/;
+            const descPatt = /^[a-zA-Z0-9%*.+\-!@#$&?\s]{20,1000}$/;
+
+            if (!namePatt.test(mName)) {
+                alert("Meditation Therapy Name must be between 3 and 100 characters and can only include alphanumeric and common symbols.");
+                return false;
+            }
+            if (!descPatt.test(mDesc)) {
+                alert("Meditation Therapy Description must be between 20 and 1000 characters.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+</html>

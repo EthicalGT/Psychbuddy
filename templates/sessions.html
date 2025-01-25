@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Sessions</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <nav class="sessionsnav">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="{% static 'img/psychbuddy.png' %}" alt="logo">
+                </div>
+                <div class="logotxt">
+                    <span id="logotxtid">Psych</span>buddy
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li id="currentPage"><a href="homepage">Home</a></li>
+                        <li><a href="GIA">GIA</a></li>
+                        <li id="resources">Resources
+                        <div class="resources-menu">
+                            <ul>
+                                <li><a href="sessions">Video Sessions</a></li>
+                                <li><a href="relaxation">Audio Therapy</a></li>
+                                <a href="forum"><li>Forum</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="extras">Extras
+                        <div class="extras-menu">
+                            <ul>
+                            <li><a href="wellnessLog">Journal</a></li><br>
+                            <li><a href="tips">Tips</a></li>
+                            <a href="news"><li>News</li></a>
+                            <a href="YM"><li>Yoga & Meditation</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="therapist">Therapist</li>
+                        <a href="aboutus"><li>About Us</li></a>
+                    </ul>
+                </div>
+            </div>
+            <div class="tags">
+                <h2><span>Psych</span>buddy Sessions</h2>
+                <p>Psychbuddy offers a wide variety of mental health-related video sessions.</p>
+                </div>
+        </nav>
+    
+        <div class="sessions">
+            <div class="sessions-tab">
+                    <div class="category">
+                        <a href="individualtherapy"><img src="{% static 'img/category1.png' %}" alt="sessions image">
+                        </a><span>Individual Therapy</span>
+                    </div>
+                    <div class="category">
+                        <a href="coupletherapy"><img src="{% static 'img/category2.png' %}" alt="sessions image"></a>
+                    <span>Couple Therapy</span>
+                </div>
+                <div class="category">
+                    <a href="familytherapy"><img src="{% static 'img/category3.png' %}" alt="sessions image"></a>
+                <span>Family Therapy</span>
+            </div>
+        </div>
+        <div class="sessions-tab">
+            <div class="category">
+                <a href="grouptherapy"><img src="{% static 'img/category4.png' %}" alt="sessions image"></a>
+                    <span>Group Therapy</span>
+            </div>
+            <div class="category">
+                <a href="heartbrokentherapy"><img src="{% static 'img/category5.png' %}" alt="sessions image"></a>
+                <span>HeartBroken Therapy</span>
+            </div>
+            <div class="category">
+                <a href="traumatherapy"><img src="{% static 'img/category6.png' %}" alt="sessions image"></a>
+                <span>Trauma Therapy</span>
+            </div>
+            </div>
+
+        <div class="footer">
+            <div class="caption">
+                <h3>Follow Me On</h3>
+            </div>
+            <div class="social-logos">
+                <a href="whatsapp" target="_blank"><img src="{% static 'img/whatsapp.png' %}" alt="whatsapp" id="whatsapp"></a>
+                <a href="instagram" target="_blank"><img src="{% static 'img/instagram.png' %}" alt="instagram" id="instagram"></a>
+                <a href="facebook" target="_blank"><img src="{% static 'img/facebook.png' %}" alt="facebook" id="facebook"></a>
+            </div>
+            <div class="creator-msg">
+                <p>Crafted with <span id="heart">❤️</span> by GT</p>
+            </div>
+        </div>
+    </body>
+</html>

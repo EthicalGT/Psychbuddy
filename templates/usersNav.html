@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Admin Panel</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    </head>
+    <body>
+        <div class="adminflexbar">
+            <div class="leftSidebar">
+                <h2>Psychbuddy Admin Dashboard</h2>
+                <p>Welcome Back GT!</p>
+                <ul>
+                    <a href="usersNav"><li>Users</li></a>  
+                    <a href="manageResources"><li>Resources Management</li></a>
+                    <a href="admintips"><li>Tips</li></a>
+                    <a href="adminforum"><li>Community Forum</li></a>
+                    <a href="appointmentmail"><li>Appointment</li></a>
+                    <a href="feedbackinfo"><li>Feedback</li></a>
+                    <a href="adminlogout"><li>Logout</li></a>
+                    </ul>
+                <div class="creatorline">
+                    <p>Crafted with &hearts; by GT</p>
+                </div>
+            </div>
+            <div class="rightSidebar">
+                <div class="users" id="users">
+                    <h2>Users Information</h2>
+                    {%if data%}
+                    <table>
+                        <tr>
+                            <th>username</th>
+                            <th>Fullname</th>
+                            <th>Contact No</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                        {%for dt in data%}
+                        <tr>
+                            <td>{{dt.username}}</td>
+                            <td>{{dt.fullname}}</td>
+                            <td>{{dt.contact}}</td>
+                            <td>{{dt.email}}</td>
+                            <td><button onclick="clicked()">Delete</button>
+                        </tr>
+                            {%endfor%}
+                    </table>
+                    {%else%}
+                    <p>No Data Found!</p>
+                    {%endif%}
+                </div>
+                <div class="deleteform" id="deleteform">
+                    <form action="usersNav" method="POST">
+                        <h3>Deletion Form</h3>
+                        {% csrf_token %}
+                        <input type="text" name="tb1" placeholder="Enter Username..!">
+                        <br>
+                        <input type="submit" value="Delete">
+                    </form>
+                    <button onclick="clicked2()">Close</button>
+                </div>
+            </div>
+            <script>
+                function clicked(){
+                    document.getElementById('users').style.display='none';
+                    document.getElementById('deleteform').style.display='block';
+                }
+                function clicked2(){
+                    document.getElementById('users').style.display='block';
+                    document.getElementById('deleteform').style.display='none';
+                }
+            </script>
+    </body>
+</html>

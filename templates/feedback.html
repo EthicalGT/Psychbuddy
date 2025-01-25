@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Feedback</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body id="psychbody">
+        <nav class="navbarDiv">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="{% static 'img/psychbuddy.png' %}" alt="logo">
+                </div>
+                <div class="logotxt">
+                    <span id="logotxtid">Psych</span>buddy
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li id="currentPage"><a href="homepage">Home</a></li>
+                        <li><a href="GIA">GIA</a></li>
+                        <li id="resources">Resources
+                        <div class="resources-menu">
+                            <ul>
+                                <li><a href="sessions">Video Sessions</a></li>
+                                <li><a href="relaxation">Audio Therapy</a></li>
+                                <a href="forum"><li>Forum</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="extras">Extras
+                        <div class="extras-menu">
+                            <ul>
+                            <li><a href="wellnessLog">Journal</a></li><br>
+                            <li><a href="tips">Tips</a></li>
+                            <a href="news"><li>News</li></a>
+                            <a href="YM"><li>Yoga & Meditation</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="therapist">Therapist</li>
+                        <a href="aboutus"><li>About Us</li></a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    
+        <main>
+            <div class="feedback-sec">
+                <div class="feedback-info">
+                    <h2>We Want Your<br><span>Feedback!</span></h2>
+                    <p>At Psychbuddy, we believe that your feedback is crucial to our mission of providing effective mental health support. By sharing your thoughts and experiences, you help us understand what works well and what areas need improvement. Your insights enable us to enhance our platform, ensuring that we meet the diverse needs of our users more effectively. Whether it's suggestions for new features, content improvements, or any other aspect of your experience, your voice matters to us. Together, we can create a supportive community that fosters mental well-being for everyone. Thank you for being a part of this journey with us!"</p>
+                    <a href="#feedForm"><button>Go!</button></a>
+                </div>
+                <div class="feedback-img">
+                <img src="{%static 'img/feedback2.png'%}">
+                </div>
+            </div>
+        </main>
+            <div class="feedback-form" id="feedForm">
+                <form action="feedback" name="myform" method="POST" onsubmit="return validation()">
+                    {% csrf_token %}
+                    <label>Name: </label><br>
+                    <input type="text" name="tb1" required><br>
+                    <label>Contact: </label><br>
+                    <input type="text" name="tb2" required><br>
+                    <label>Suggetion/Msg: </label><br>
+                    <textarea name="tb3" required></textarea rows="9"><br>
+                    <input type="submit" id="feedback-submit" value="Send">
+                </form>
+                {{res|safe}}
+            </div>
+        <div class="footer">
+            <div class="caption">
+                <h3>Follow Me On</h3>
+            </div>
+            <div class="social-logos">
+                <a href="whatsapp" target="_blank"><img src="{% static 'img/whatsapp.png' %}" alt="whatsapp" id="whatsapp"></a>
+                <a href="instagram" target="_blank"><img src="{% static 'img/instagram.png' %}" alt="instagram" id="instagram"></a>
+                <a href="facebook" target="_blank"><img src="{% static 'img/facebook.png' %}" alt="facebook" id="facebook"></a>
+            </div>
+            <div class="creator-msg">
+                <p>Crafted with <span id="heart">❤️</span> by GT</p>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            function validation() {
+                let fullname = document.forms["myform"]["tb1"].value;
+                let feedback = document.forms["myform"]["tb3"].value;
+                let mobile = document.forms["myform"]["tb2"].value;
+                let fullnamePatt = /^[a-zA-Z ]{12,}$/; 
+                let feedbackPatt = /^[a-zA-Z0-9\s,.'-]{25,}$/; 
+                let mobilePatt = /^[0-9]{10,}$/;
+        
+                if (!fullnamePatt.test(fullname)) {
+                    alert('Only text (min length: 12 characters) is allowed for Fullname!');
+                    return false;
+                }
+        
+                if (!feedbackPatt.test(feedback)) {
+                    alert('Feedback should be at least 25 characters long!');
+                    return false;
+                }
+        
+                if (!mobilePatt.test(mobile)) {
+                    alert('Mobile no should be 10 digit long and only numbers are allowed!');
+                    return false;
+                }
+        
+                return true;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+	    <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>OTP Verification</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <style type="text/css">
+            @font-face {
+    font-family: MyFont;
+    src: url("{% static 'fonts/Poppins-Regular.woff' %}");
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: MyFont;
+    box-sizing: border-box;
+}
+body{
+    background-image: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+.content{
+    display: block;
+}
+.navbar{
+    height: 55px;
+    background-image: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+    display: flex;
+    border-bottom: 1px solid #2ab7ca;
+}
+
+.logo{
+    margin-top: 8px;
+}
+
+.logo span{
+    color: #fff;
+    font-size: 25px;
+    font-weight: bold;
+    padding-left: 20px;
+}
+.navs{
+    margin-left: auto;
+}
+
+ul{
+    list-style-type: none;
+}
+
+li{
+    float: left;
+    position: relative;
+    padding-inline: 20px;
+    padding-top: 10px;
+}
+a{
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+.v-form {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    margin-top: 3%;
+    max-height: auto;
+}
+legend{
+    text-align: center;
+    font-size: 40px;
+    color: #fff;
+    margin-top: 40px;
+    font-weight: bold;
+    text-shadow: 1px 2px 5px #000;
+}
+form {
+    display: flex;
+    background-color: #fff;
+    margin-top: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    flex-direction: column;
+    align-items: flex-start; 
+    border: 1px solid #00A877;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 8px;
+    }
+form:hover{
+    transition: 1s ease-in;
+    box-shadow: 1px 5px 15px 2px #000;
+}
+label {
+    text-align: left; 
+    width: 100%;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"], input[type="password"]{
+    width: 100%;
+    max-width: 300px; 
+    padding: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #999;
+}
+.radio-div{
+    width: 100%;
+    display: flex;
+}
+.radio2{
+    padding-left: 60px;
+}
+textarea{
+    width: 100%;
+    max-width: 300px; 
+    padding: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #999;
+    transition: transform 0.5s, height 0.5s;
+}
+
+#email,#mobile{
+    color: #fff;
+    border: 1px solid #03e9f4;;
+    background: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+input[type="password"]:focus{
+    color: #fff;
+    border: 1px solid #03e9f4;;
+    background: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+
+input[type="text"]:focus{
+    color: #fff;
+    border: 1px solid #03e9f4;;
+    background: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
+input[type="date"]:focus{
+    color: #fff;
+    border: 1px solid #03e9f4;;
+    background: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+    border-radius: 8px;
+}
+textarea:focus {
+    color: #fff;
+    border: 1px solid #03e9f4;;
+    background: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+    border-radius: 8px;
+}
+#pwd-vis{
+    margin-left: 280px;
+    border: 1px solid #228B22;
+    border-radius: 8px;
+    margin-bottom: 2px;
+}
+#pwd-vis:hover{
+    cursor: pointer;
+    color: #228B22;
+}
+input[type="submit"] {
+    width: 100%;
+    padding: 10px 20px;
+    background: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+    box-shadow: 0 0 5px #60dfcd,
+              0 0 25px #60dfcd,
+              0 0 50px #1e9afe,
+              0 0 100px #60dfcd;
+          }
+
+        </style>
+    </head>
+    <body>
+<div class="content">
+    <div class="navbar">
+        <div class="logo"><span>Psychbuddy</span>
+        </div>
+        </div>
+    </div>
+    <div class="v-form">
+        <legend>OTP Verification</legend>
+        <form action="third" method="post"  name="myForm" onsubmit="return validateForm()">
+            {% csrf_token %}
+            <label for="OTP">Enter OTP: </label><br>
+            <input type="text" name="tb1" maxlength="6"><br>
+            <input type="text" name="email" value="{{email}}" readonly id="email">
+            <input type="text" name="phoneno" value="{{mobile}}" readonly id="mobile">
+            <input type="submit">
+            <br>
+            
+        </form>
+    </div>
+    <script>
+        alert('{{res}}');
+    function validateForm() {
+        let otp = document.forms["myForm"]["tb1"].value;
+        
+        let otpPattern = /^[0-9]{4,}$/; 
+        if (!otpPattern.test(otp)) {
+            alert("OTP should be 6 digit and only numbers allowed!");
+            return false;
+        }
+
+        return true; 
+    }
+</script>
+    </body>
+    </html>

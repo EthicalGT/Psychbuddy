@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Wellness Log</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body id="psychbody">
+        <nav class="navbarDiv">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="{% static 'img/psychbuddy.png' %}" alt="logo">
+                </div>
+                <div class="logotxt">
+                    <span id="logotxtid">Psych</span>buddy
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li id="currentPage"><a href="homepage">Home</a></li>
+                        <li><a href="GIA">GIA</a></li>
+                        <li id="resources">Resources
+                        <div class="resources-menu">
+                            <ul>
+                                <li><a href="sessions">Sessions</a></li><br>
+                                <a href="forum"><li>Forum</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="extras">Extras
+                        <div class="extras-menu">
+                            <ul>
+                            <li><a href="wellnessLog">Journal</a></li><br>
+                            <li><a href="tips">Tips</a></li>
+                            <a href="news"><li>News</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="therapist">Therapist</li>
+                        <a href="aboutus"><li>About Us</li></a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    
+        <main>
+            <div class="journal">
+                <div class="journal-img">
+                    <img src="{%static 'img/journal.png' %}" alt="journal-img">
+                    </div>
+                    <div class="journal-desc">
+                        <h2>Hello Dear,<span id="username"> {{name}} !</span></h2>
+                        <p>Psychbuddy Mental Wellness Log is a dedicated feature designed to support patients in documenting their daily experiences and emotions. This tool allows users to write about their day, including thoughts, feelings, and incidents, creating a personal space for reflection. By consistently logging entries, users can track their mental and emotional progress over time.</p>
+                            <p>For psychiatrists, this journal provides valuable insights into the patient's mindset and behavioral patterns, enabling them to better understand their patient's mental state. This feature serves as a collaborative tool between patient and psychiatrist, fostering deeper communication, personalized care, and more effective treatment plans.</p>
+                        <a href="#wellnesslog"><button>Start Logging</button></a>
+                        </div>
+            </div>
+        </main>
+        
+        <div class="wellnesslog-form" id="wellnesslog">
+            <div class="wellness-header">
+            <h2 id="logline">Wellness Log</h2>
+            <p id="log-para">Start writing about your daily activities and everything else that happened throughout your day!</p>
+            </div>
+            <form action="wellnessLog" method="POST" name="myform" onsubmit="return validate()">
+                {% csrf_token %}
+                <textarea name="tb1" placeholder="Start Writing about your day!" required></textarea>
+                <input type="submit" value="Submit">
+            </form>
+            <div class="wellness-footer">
+                <a href="wellnesslogdir"><span>View Your Logs</span></a>
+            </div>
+        </div>
+        {{alert|safe}}
+        <div class="footer">
+            <div class="caption">
+                <h3>Follow Me On</h3>
+            </div>
+            <div class="social-logos">
+                <a href="whatsapp" target="_blank"><img src="{% static 'img/whatsapp.png' %}" alt="whatsapp" id="whatsapp"></a>
+                <a href="instagram" target="_blank"><img src="{% static 'img/instagram.png' %}" alt="instagram" id="instagram"></a>
+                <a href="facebook" target="_blank"><img src="{% static 'img/facebook.png' %}" alt="facebook" id="facebook"></a>
+            </div>
+            <div class="creator-msg">
+                <p>Crafted with <span id="heart">❤️</span> by GT</p>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            function validate(){
+                let feedback=document.forms["myform"]["tb1"].value;
+                let feedbackPatt = /^[a-zA-Z0-9\s,.!;#@'-]{100,}$/;
+                if(!feedbackPatt.test(feedback)){
+                    alert('The wellness log msg should be max than 100 letters!');
+                    return false;
+                }
+                return true; 
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Pshychiatrist</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body id="psychbody">
+        <nav class="navbarDiv">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="{% static 'img/psychbuddy.png' %}" alt="logo">
+                </div>
+                <div class="logotxt">
+                    <span id="logotxtid">Psych</span>buddy
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li id="currentPage"><a href="homepage">Home</a></li>
+                        <li><a href="GIA">GIA</a></li>
+                        <li id="resources">Resources
+                        <div class="resources-menu">
+                            <ul>
+                                <li><a href="sessions">Video Sessions</a></li>
+                                <li><a href="relaxation">Audio Therapy</a></li>
+                                <a href="forum"><li>Forum</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="extras">Extras
+                        <div class="extras-menu">
+                            <ul>
+                            <li><a href="wellnessLog">Journal</a></li><br>
+                            <li><a href="tips">Tips</a></li>
+                            <a href="news"><li>News</li></a>
+                            <a href="YM"><li>Yoga & Meditation</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="therapist">Therapist</li>
+                        <a href="aboutus"><li>About Us</li></a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    
+        <div class="mainDiv">
+            <div class="flex1">
+                <img src="{% static 'img/psychiatrist.png'%}">
+            </div>
+            <div class="flex2">
+                <h2>Psychatrist Directory</h2>
+                <p>Our Psychiatrist Directory is a comprehensive resource designed to connect you with licensed mental health professionals who can provide expert care and support. Whether you're looking for help with anxiety, depression, stress, or any other mental health concern, our directory makes it easy to find qualified psychiatrists near you. Each profile includes background information, areas of expertise, and contact details, allowing you to make informed decisions about your mental health care. Your well-being is our priority, and we're here to help you find the right support.</p>
+                </div>
+        </div>
+        <div class="psych-div">
+            <h2>Proffessional <span>Psych</span>iatrist</h2>
+            <div class="psych-box">
+                {% if Data %}
+                {% for gt in Data %}
+                <div class="psych-info">
+                    <img src="{% static gt.picture %}" alt="img">
+                    <h3>{{gt.name}}</h3>
+                    <p>Location: {{gt.location}}<br>
+                    Rating : {{gt.rating}}
+                    <br>Education: {{gt.education}}
+                    <br>Experience: {{gt.experience}}</p>
+                    <form action="psychinfo" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="psychname" value="{{gt.name}}">
+                    <button>See Profile</button>
+                    </form>
+                </div>
+                {% endfor %}
+                {%else%}
+                <p>No Data Found</p>
+                {%endif%}
+            </div>
+        </div>
+        <div class="footer">
+            <div class="caption">
+                <h3>Follow Me On</h3>
+            </div>
+            <div class="social-logos">
+                <a href="whatsapp" target="_blank"><img src="{% static 'img/whatsapp.png' %}" alt="whatsapp" id="whatsapp"></a>
+                <a href="instagram" target="_blank"><img src="{% static 'img/instagram.png' %}" alt="instagram" id="instagram"></a>
+                <a href="facebook" target="_blank"><img src="{% static 'img/facebook.png' %}" alt="facebook" id="facebook"></a>
+            </div>
+            <div class="creator-msg">
+                <p>Crafted with <span id="heart">❤️</span> by GT</p>
+            </div>
+        </div>
+    </body>
+</html>

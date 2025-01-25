@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychbuddy Admin Panel</title>
+    <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+</head>
+<body>
+    <div class="adminflexbar">
+        <div class="leftSidebar">
+            <h2>Psychbuddy Admin Dashboard</h2>
+            <p>Welcome Back GT!</p>
+            <ul>
+                <a href="usersNav"><li>Users</li></a>  
+                <a href="manageResources"><li>Resources Management</li></a>
+                <a href="admintips"><li>Tips</li></a>
+                <a href="adminforum"><li>Community Forum</li></a>
+                <a href="appointmentmail"><li>Appointment</li></a>
+                <a href="feedbackinfo"><li>Feedback</li></a>
+                <a href="adminlogout"><li>Logout</li></a>
+                </ul>
+            <div class="creatorline">
+                <p>Crafted with &hearts; by GT</p>
+            </div>
+        </div>
+        <div class="rightSidebar">
+            <h2>Psychbuddy Tips</h2>
+            <div class="myform" style="display: block;">
+                <form name="admintips" action="admintips" method="POST" onsubmit="return validate()">
+    {% csrf_token %}
+    <div class="formElements">
+        <label class="lbl">Todays Tips: </label><br>
+        <textarea name="tip" required id="tipstextarea"></textarea><br>
+        <input type="submit" name="send" value="Send Tips"><br>
+        <input type="reset" name="send" value="Reset">
+    </div>
+</form>
+            </div>
+        </div>
+    </div>
+    <script>
+    function validate() {
+        const tips = document.forms["admintips"]["tb1"].value; 
+        if (tips.length < 30) {
+            alert("Tips are too less in length!");
+            return false;
+        }
+    return true;
+    }
+</script>
+</body>
+</html>

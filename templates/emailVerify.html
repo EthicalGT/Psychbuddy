@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy - Email Verification</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <style type="text/css">
+            @font-face {
+                font-family: MyFont;
+                src: url("{% static 'fonts/Poppins-Regular.woff' %}");
+            }
+            *{
+                margin: 0;
+                padding: 0;
+                font-family: MyFont;
+                box-sizing: border-box;
+            }
+            body{
+                background-image: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
+            
+            .navbar{
+                height: 55px;
+                background-image: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+                display: flex;
+                border-bottom: 1px solid #2ab7ca;
+            }
+            .navbar:hover{
+                border-bottom: 1px solid #2ab7ca;
+                transition: 1s ease-in;
+            }
+            
+            .logo{
+                margin-top: 8px;
+            }
+            
+            .logo span{
+                color: #fff;
+                font-size: 25px;
+                font-weight: bold;
+                padding-left: 20px;
+            }
+            .navs{
+                margin-left: auto;
+            }
+            
+            ul{
+                list-style-type: none;
+            }
+            
+            li{
+                float: left;
+                position: relative;
+                padding-inline: 20px;
+                padding-top: 10px;
+            }
+            a{
+                font-size: 30px;
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+            }
+            .v-form {
+                width: 50%;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 20px;
+                margin-top: 3%;
+                max-height: auto;
+                background-image: url("{% static 'img/formbg.png' %}");
+                background-size: contain;
+                background-position: center 40px; 
+                background-repeat: no-repeat;
+            }
+            legend{
+                text-align: center;
+                font-size: 40px;
+                color: #fff;
+                font-weight: bold;
+            }
+            form {
+                display: flex;
+                background-color: #fff;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                flex-direction: column;
+                align-items: flex-start; 
+                border: 1px solid #1e9afe;
+                width: 60%;
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 40px;
+                padding-right: 40px;
+                border-radius: 8px;
+                }
+            form:hover{
+                transition: 1s ease-in;
+                box-shadow: 1px 5px 15px 2px #000;
+            }
+            
+            label {
+                text-align: left; 
+                width: 100%;
+                font-size: 16px;
+                margin-bottom: 5px;
+            }
+            
+            input[type="number"]::-webkit-inner-spin-button,
+            input[type="number"]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            input[type="number"],
+            input[type="email"] {
+                width: 100%;
+                max-width: 300px; 
+                padding: 10px;
+                margin-bottom: 10px;
+                outline: none;
+                font-size: 16px;
+                background-color: #fff;
+                border: none;
+                border-bottom: 1px solid #999;
+                transition: transform 0.5s, height 0.5s;
+            }
+            input[type="number"]:focus{
+                color: #fff;
+                border: 1px solid #03e9f4;;
+                background: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+                border-radius: 8px;
+                border: 1px solid transparent;
+            }
+            input[type="email"]:focus{
+                color: #fff;
+                border: 1px solid #03e9f4;;
+                background: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+                border-radius: 8px;
+            }
+            input[type="email"]:focus {
+                border: 1px solid #999;
+            }
+            input[type="submit"] {
+                width: 100%;
+                padding: 10px 20px;
+                background: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+                color: #fff;
+                border: none;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            input[type="submit"]:hover {
+                background: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+                box-shadow: 0 0 5px #60dfcd,
+                          0 0 25px #1e9afe,
+                          0 0 50px #60dfcd,
+                          0 0 100px #1e9afe;
+                      }            
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <div class="navbar">
+                <div class="logo"><span>Psychbuddy</span></div>
+            </div>
+        </div>
+        <div class="v-form">
+            <legend>Email Verification</legend>
+            <form method="POST" action="second" name="formV" onsubmit="return validation()">
+                {% csrf_token %}
+                <label for="mobileno">Mobile No: </label><br>
+                <input type="number" name="mobile" maxlength="10"><br>
+                <label for="email">Email: </label><br>
+                <input type="email" name="email"><br>
+                <input type="submit"><br>
+            </form>
+        </div>
+        <script>
+            function validation(){
+                let mobileno = document.forms["formV"]["mobile"].value;
+                let mobilePatt = /^[5-9]\d{9}$/;
+                let email = document.forms["formV"]["email"].value;
+                let emailPatt = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                if (!mobilePatt.test(mobileno)) {
+                    alert('Mobile no should not start with 0 and must be 10 digits!');
+                    return false;
+                }
+                if (!emailPatt.test(email)) {
+                    alert('Invalid email format!');
+                    return false;
+                }
+                return true;
+            }
+        </script>
+    </body>
+</html>

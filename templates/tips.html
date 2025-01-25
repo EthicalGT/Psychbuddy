@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Tips</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body id="psychbody">
+        <nav class="navbarDiv">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="{% static 'img/psychbuddy.png' %}" alt="logo">
+                </div>
+                <div class="logotxt">
+                    <span id="logotxtid">Psych</span>buddy
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li id="currentPage"><a href="homepage">Home</a></li>
+                        <li><a href="GIA">GIA</a></li>
+                        <li id="resources">Resources
+                        <div class="resources-menu">
+                            <ul>
+                                <li><a href="sessions">Video Sessions</a></li>
+                                <li><a href="relaxation">Audio Therapy</a></li>
+                                <a href="forum"><li>Forum</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="extras">Extras
+                        <div class="extras-menu">
+                            <ul>
+                            <li><a href="wellnessLog">Journal</a></li>
+                            <li><a href="tips">Tips</a></li>
+                            <a href="news"><li>News</li></a>
+                            <a href="YM"><li>Yoga & Meditation</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <a href="therapist"><li>Therapist</li></a>
+                        <a href="aboutus"><li>About Us</li></a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <main>
+            <div class="tipsDiv">
+                <div class="tipsImg">
+                    <img src="{%static 'img/idea.png'%}" alt="tips">
+                </div>
+                <div class="tipsDesc">
+                    <h2><span>Psych</span>buddy Tips</h2>
+                    <p>The Psychbuddy tips module leverages the background camera to detect the user's emotions in real time, providing personalized tips based on the identified emotional state. This feature allows users to receive timely, tailored suggestions that promote mental wellness, supporting their unique emotional needs at any given moment.</p>
+                </div>
+            </div>
+            <center></center>
+            <div class="tips">
+                {%if emotion and suggestion%}
+                <div class="personalized">
+                    <h2>Personalized Tips</h2>
+                    <h4>Emotion Detected: {{emotion}}</h4>
+                    <p>{{suggestion|safe}}</p>
+                </div>
+                {%else%}
+                <p>No Data Found!</p>
+                {%endif%}
+            </div>
+        </div>
+        <center><h2>Admin Tips</h2></center><br>
+        <div class="admintips">
+            <br>
+            {%if tips and datetime %}
+                <div class="personalized">
+                    <h4>Tips: {{tips}}</h4>
+                    <p>{{datetime}}</p>
+                </div>
+                {%else%}
+                <p>No emotion Detected!</p>
+                {%endif%}
+        </div>
+        <div class="footer">
+            <div class="caption">
+                <h3>Follow Me On</h3>
+            </div>
+            <div class="social-logos">
+                <a href="whatsapp" target="_blank"><img src="{% static 'img/whatsapp.png' %}" alt="whatsapp" id="whatsapp"></a>
+                <a href="instagram" target="_blank"><img src="{% static 'img/instagram.png' %}" alt="instagram" id="instagram"></a>
+                <a href="facebook" target="_blank"><img src="{% static 'img/facebook.png' %}" alt="facebook" id="facebook"></a>
+            </div>
+            <div class="creator-msg">
+                <p>Crafted with <span id="heart">❤️</span> by GT</p>
+            </div>
+        </div>
+    </main>
+    </body>
+    </html>

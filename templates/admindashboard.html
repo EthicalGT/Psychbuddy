@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Admin Panel</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    </head>
+    <body>
+        <div class="adminflexbar">
+            <div class="leftSidebar">
+                <h2>Psychbuddy Admin Dashboard</h2>
+                <p>Welcome Back GT!</p>
+                <ul>
+                <a href="usersNav"><li>Users</li></a>  
+                <a href="manageResources"><li>Resources Management</li></a>
+                <a href="admintips"><li>Tips</li></a>
+                <a href="adminforum"><li>Community Forum</li></a>
+                <a href="appointmentmail"><li>Appointment</li></a>
+                <a href="feedbackinfo"><li>Feedback</li></a>
+                <a href="adminlogout"><li>Logout</li></a>
+                </ul>
+                <div class="creatorline">
+                    <p>Crafted with &hearts; by GT</p>
+                </div>
+            </div>
+            <div class="rightSidebar">
+                <div class="actionsTab">
+                    <h2>-- Actionables --</h2>
+                </div>
+            </div>
+    </body>
+</html>

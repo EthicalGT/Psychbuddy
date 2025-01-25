@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Admin Panel</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+    </head>
+    <body>
+        <div class="adminflexbar">
+            <div class="leftSidebar">
+                <h2>Psychbuddy Admin Dashboard</h2>
+                <p>Welcome Back GT!</p>
+                <ul>
+                    <a href="usersNav"><li>Users</li></a>  
+                    <a href="manageResources"><li>Resources Management</li></a>
+                    <a href="admintips"><li>Tips</li></a>
+                    <a href="adminforum"><li>Community Forum</li></a>
+                    <a href="appointmentmail"><li>Appointment</li></a>
+                    <a href="feedbackinfo"><li>Feedback</li></a>
+                    <a href="adminlogout"><li>Logout</li></a>
+                    </ul>
+                <div class="creatorline">
+                    <p>Crafted with &hearts; by GT</p>
+                </div>
+            </div>
+            <div class="rightSidebar">
+                <div class="actionsTab">
+                    <div class="resources-navbar">
+                        <div class="resources-card">
+                            <h3>Video Sessions</h3>
+                            <p>"Manage video resources effortlessly in the Psychbuddy admin panel with intuitive options to update, delete, and insert content. Ensure up-to-date and relevant mental health materials for users."</p>
+                            <a href="videoRes"><button>Insert Resources</button></a>&nbsp;
+                            <a href="delVideoSessions"><button>Delete Resources</button></a>
+                        </div>
+                        <div class="resources-card">
+                            <h3>Audio Resources</h3>
+                            <p>"Efficiently manage audio resources in the Psychbuddy admin panel with options to update, delete, and insert content, providing users with quality mental health audio materials."</p>
+                            <a href="audioRes"><button>Insert Resources</button></a>&nbsp;
+                            <a href="delAudio"><button>Delete Resources</button></a>
+                        </div>
+                    </div>
+                    <div class="resources-navbar">
+                        <div class="resources-card">
+                            <h3>Yoga & Meditation Resources</h3>
+                            <p>"Seamlessly manage Yoga & Meditation resources in the Psychbuddy admin panel with update, delete, and insert options to offer users enriching wellness content."</p>
+                            <a href="yRes"><button>Insert Yoga</button></a>&nbsp;
+                            <a href="mRes"><button>Insert Meditation</button></a>
+                            <a href="delYRes"><button>Delete Yoga</button></a>&nbsp;
+                            <a href="delMRes"><button>Delete Meditation</button></a>
+                        </div>
+                        <div class="resources-card">
+                            <h3>Reading Resources</h3>
+                            <p>"Effortlessly manage Reading resources in the Psychbuddy admin panel with options to update, delete, and insert, ensuring access to valuable mental health literature."</p>
+                            <a href="bookRes"><button>Insert Resources</button></a>&nbsp;
+                            <a href="delBook"><button>Delete Resources</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+</html>

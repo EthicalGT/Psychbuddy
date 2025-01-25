@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychbuddy Admin Panel</title>
+    <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+</head>
+<body>
+    <div class="adminflexbar">
+        <div class="leftSidebar">
+            <h2>Psychbuddy Admin Dashboard</h2>
+            <p>Welcome Back GT!</p>
+            <ul>
+                <a href="usersNav"><li>Users</li></a>  
+                <a href="manageResources"><li>Resources Management</li></a>
+                <a href="admintips"><li>Tips</li></a>
+                <a href="adminforum"><li>Community Forum</li></a>
+                <a href="appointmentmail"><li>Appointment</li></a>
+                <a href="feedbackinfo"><li>Feedback</li></a>
+                <a href="adminlogout"><li>Logout</li></a>
+                </ul>
+            <div class="creatorline">
+                <p>Crafted with &hearts; by GT</p>
+            </div>
+        </div>
+        <div class="rightSidebar">
+            <h2>Delete Book Resource</h2>
+            <div class="myform" style="display: block;">
+                <form name="deleteForm" action="delBook" method="POST" onsubmit="return validateDelete()">
+                    {% csrf_token %}
+                    <div class="formElements">
+                        <label class="lbl">Book Name:</label><br>
+                        <input type="text" name="bname" required><br>
+                        <input type="submit" value="Delete">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function validateDelete() {
+            const form = document.forms["deleteForm"];
+            const bname = form["bname"].value.trim();
+
+            const namePatt = /^[A-Za-z0-9\s\-_,.]{3,100}$/;
+
+            if (!namePatt.test(bname)) {
+                alert("Book Name must be between 3 and 100 characters and can only include alphanumeric and common symbols.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>

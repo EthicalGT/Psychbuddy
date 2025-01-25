@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Community Forum</title>
+  <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-area">
+      <div class="chat-header">
+        <img src="{% static 'img/psychbuddy.png' %}" alt="logo">
+        <h4>Psychbuddy Admin: Community Forum</h4>
+      </div>
+      <div class="chat-box" id="chat-box">
+        {% if info %}
+          {% for msg in info%}
+        <div class="message received">
+        <b>{{msg.name}}</b>
+          <p>{{msg.msg}}</p>
+          <span class="time">{{msg.ctime}}</span>
+        </div>
+        {%endfor%}
+        {% else %}
+        <p>No messages</p>
+        {% endif %}
+        {% if info2 %}
+          {% for msg in info2%}
+        <div class="message sent">
+          
+            <b>GT[Admin]</b>
+          <p>{{msg.msg}}</p>
+          <span class="time">{{msg.ctime}}</span>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>No messages found.</p>
+    {% endif %}
+      </div>
+      <form id="message-form">
+        {% csrf_token %}
+        <div class="message-input">
+          <input type="text" id="user-input" placeholder="Type a message..." name="msg" required>
+          <button class="send-btn" type="submit">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('message-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+      let userInput = document.getElementById('user-input').value;
+      let formData = new FormData();
+      formData.append('msg', userInput);
+      fetch('/admin/adminforum', {
+        method: 'POST',
+        headers: {
+          'X-CSRFToken': csrfToken,
+        },
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          let newMessage = `
+            <div class="message sent">
+              <b>You:</b>
+              <p>${data.msg}</p>
+              <span class="time">Just now</span>
+            </div>
+          `;
+          document.getElementById('chat-box').innerHTML += newMessage;
+          let chatBox = document.getElementById('chat-box');
+          chatBox.scrollTop = chatBox.scrollHeight;
+          document.getElementById('user-input').value = '';
+        } else {
+          alert('Error sending message. Please try again.');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    });
+    </script>
+</body>
+</html>

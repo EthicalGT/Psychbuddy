@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psychbuddy Admin Panel</title>
+    <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+    <link rel="stylesheet" href="{% static 'css/style2.css' %}">
+</head>
+<body>
+    <div class="adminflexbar">
+        <div class="leftSidebar">
+            <h2>Psychbuddy Admin Dashboard</h2>
+            <p>Welcome Back GT!</p>
+            <ul>
+                <a href=""><li>Platform Statistics</li></a>
+                <a href="usersNav"><li>Users</li></a>
+                <a href=""><li>Resources Management</li></a>
+                <a href=""><li>Tips</li></a>
+                <a href=""><li>Community Forum</li></a>
+                <a href=""><li>Appointment</li></a>
+                <a href=""><li>Feedback</li></a>
+                <a href=""><li>Notification</li></a>
+                <a href=""><li>Logout</li></a>
+            </ul>
+            <div class="creatorline">
+                <p>Crafted with &hearts; by GT</p>
+            </div>
+        </div>
+        <div class="rightSidebar">
+            <h2>Reading Resources</h2>
+            <div class="myform" style="display: block;">
+                <form name="uploadForm" action="bookRes" method="POST" enctype="multipart/form-data" onsubmit="return validate()">
+                    {% csrf_token %}
+                    <div class="formElements">
+                        <label class="lbl">Book Name:</label><br>
+                        <input type="text" name="bname" required><br>
+                        <label class="lbl">Book Author:</label><br>
+                        <input type="text" name="bauthor" required><br>
+                        <label class="lbl">Book Cover:</label><br>
+                        <input type="file" name="bcover"><br>
+                        <label class="lbl">Yoga Therapy Image:</label><br>
+                        <input type="file" name="bfile" required><br>
+                        <label class="lbl">Best For:</label><br>
+                        <input type="text" name="bestfor" required><br>
+                        <label class="lbl">Publish Year:</label><br>
+                        <input type="number" name="byear" required><br>
+                        <label class="lbl">Book Description:</label><br>
+                        <textarea name="audiodesc" required></textarea><br>
+                        <input type="submit" name="upload" value="Upload">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        function validate() {
+    const form = document.forms["uploadForm"];
+    const bname = form["bname"].value.trim();
+    const bauthor = form["bauthor"].value.trim();
+    const bcover = form["bcover"].value.trim();
+    const bfile = form["bfile"].value.trim();
+    const bestfor = form["bestfor"].value.trim();
+    const byear = form["byear"].value.trim();
+    const audiodesc = form["audiodesc"].value.trim();
+
+    const namePatt = /^[A-Za-z0-9\s\-_,.]{3,100}$/;
+    const authorPatt = /^[A-Za-z\s\-]{3,50}$/;
+    const imgFilePatt = /\.(jpg|jpeg|png|webp)$/i;
+    const bookFilePatt = /\.(pdf)$/i;
+    const bestForPatt = /^[A-Za-z\s\-_,]{3,50}$/;
+    const yearPatt = /^(19|20)\d{2}$/;
+    const descPatt = /^[a-zA-Z0-9%*.+\-!@#$&?\s]{20,1000}$/;
+
+    if (!namePatt.test(bname)) {
+        alert("Book Name must be between 3 and 100 characters and can only include alphanumeric and common symbols.");
+        return false;
+    }
+    if (!authorPatt.test(bauthor)) {
+        alert("Book Author must be between 3 and 50 characters and can only include alphabets and spaces.");
+        return false;
+    }
+    if (bcover && !imgFilePatt.test(bcover)) {
+        alert("Please upload a valid image file (jpg, jpeg, png, webp) for the Book Cover.");
+        return false;
+    }
+    if (!bookFilePatt.test(bfile)) {
+        alert("Please upload a valid pdf file.");
+        return false;
+    }
+    if (!bestForPatt.test(bestfor)) {
+        alert("Best For must be between 3 and 50 characters and can only include alphabets, spaces, and common symbols.");
+        return false;
+    }
+    if (!yearPatt.test(byear)) {
+        alert("Publish Year must be a valid year between 1900 and 2099.");
+        return false;
+    }
+    if (!descPatt.test(audiodesc)) {
+        alert("Book Description must be between 20 and 1000 characters.");
+        return false;
+    }
+
+    return true;
+}
+</script>
+</body>
+</html>

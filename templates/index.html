@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <style type="text/css">
+            @font-face {
+                font-family: MyFont;
+                src: url("{% static 'fonts/Poppins-Regular.woff' %}");
+            }
+            *{
+                margin: 0;
+                padding: 0;
+                font-family: MyFont;
+                box-sizing: border-box;
+            }
+            .mainn{
+                        display: flex;
+                        margin-top: 10%;
+                    }
+                    .anim{
+                        margin-top: 70px;
+                        color: orangered;
+                        font-size: 45px;
+                        animation: anime 3s 1;
+                        opacity: 0;
+                    }
+                    #logo{
+                        width: 300px;
+                        height: 250px;
+                    }
+                    .anim2{
+                        color: orangered;
+                        font-size: 45px;
+                        margin-left: 50%;
+                        animation: anime2 3s 1;
+                        opacity: 0;
+                        margin-top: 120px;
+                    }
+                    .anim2 #ftext{
+                        color: #15f4ee;
+                        font-size: 100px;
+                    } 
+                    .anim2 #stext{
+                        color: #fff;
+                        font-size: 100px;
+                    } 
+                    @keyframes anime {
+                        0%{
+                            transform: translateX(0);
+                            opacity: 0;
+                        }
+                        100%{
+                            transform: translateX(220px);
+                            opacity: 1;
+                        }   
+                    }
+                    @keyframes anime2 {
+                        0%{
+                            transform: translateX(0);
+                            opacity: 0;
+                        }
+                        100%{
+                            transform: translateX(-470px);
+                            opacity: 1;
+                        }   
+                    }
+            .content{
+                display: none;
+            }
+            body {
+                background-color: #60dfcd;
+                background-image: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%);
+                background-size: cover; 
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+            }
+            
+            .navbar{
+                height: 55px;
+                background-color: #60dfcd;
+                background-image: linear-gradient(315deg, #60dfcd 0%, #1e9afe 74%); 
+                display: flex;
+                border-bottom: 1px solid #E9DCC9;
+            }
+            .navbar:hover{
+                transition: 1s ease-in;
+                border-bottom: 1px solid #2ab7ca;
+            }
+            
+            .logo{
+                margin-top: 8px;
+            }
+            
+            .logo span{
+                color: #fff;
+                font-size: 25px;
+                font-weight: bold;
+                padding-left: 20px;
+            }
+            .navs{
+                margin-left: auto;
+            }
+            
+            ul{
+                list-style-type: none;
+            }
+            
+            li{
+                float: left;
+                position: relative;
+                padding-inline: 20px;
+                padding-top: 10px;
+            }
+            a{
+                font-size: 30px;
+                color: #fff;
+                text-decoration: none;
+                font-weight: bold;
+            } 
+            .text-mod{
+                display: none;
+                text-align: center;
+                margin-left: 50px;
+                width: 90%;
+            
+            }
+            .text-mod h1{
+                margin-left: 120px;
+                font-size: 55px;
+                color: #fff;
+                margin-top: 24%;
+                width: 0ch;
+                overflow: hidden;
+                white-space: nowrap;
+                animation: text 4s steps(18) infinite alternate;
+                border-right: 3px solid #fff;
+            }
+            @keyframes text {
+                0%{
+                    width: 0ch;
+                }
+                50%{
+                    width: 18ch;
+                }
+                
+            } 
+            .main{
+                display: none;
+                width: 100%;
+                margin-top: 3px;
+            }
+            .background{
+                width: 500px;
+            }
+            .background img{
+                width: 600px;
+                height: 436px;
+                margin-top: 30px;
+            }
+            button{
+                margin-top: 40px;
+                margin-left: 30px;
+                margin-right: 50px;
+                width: 150px;
+                padding: 10px 20px;
+                background: #fff;
+                color: #2ab7ca;
+                border: none;
+                font-size: 16px;
+                font-weight: bold;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            button:hover{
+                transition: 1s ease-in;
+                background: linear-gradient(#15f4ee, #2ab7ca);
+                color: #fff;
+            }
+            span{
+                color: red;
+            }
+            p{
+                color: #fff;
+                padding-top: 10px;
+                font-size: 17px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="mainn">
+            <div class="anim">
+                <img id="logo" src="{% static 'img/psychbuddy.png' %}">
+            </div>
+            <div class="anim2">
+                <span id="ftext">Psych</span><span id="stext">buddy</span>
+            </div>
+        </div>
+        <div class="content">
+            <div class="navbar">
+                <div class="logo"><span>Psychbuddy</span></div>
+            </div>
+            <div class="main">
+                <div class="background">
+                    <img src="{% static 'img/jigsaw.png' %}">
+                </div>
+                <div class="text-mod">
+                    <form action="first" method="POST">
+                        {% csrf_token %}
+                        <h1>Psychbuddy's Here!</h1>
+                        <p>Kindly signup if not already a user, if yes then go for sign-in</p>
+                        <button type="submit" name="signup" value="signup">Sign-Up</button>
+                        <button type="submit" name="signin" value="signin">Sign-In</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            function myfun(){
+                document.querySelector('.text-mod').style.display='block';
+                document.querySelector('.main').style.display='flex';
+                document.querySelector('.content').style.display='block';
+                document.querySelector('.mainn').style.display='none';   
+            }
+            setTimeout(myfun, 3000);
+        </script>
+    </body>
+</html>

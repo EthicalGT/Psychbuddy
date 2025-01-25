@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Log Directory</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body id="psychbody">
+        <nav class="navbarDiv">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="{% static 'img/psychbuddy.png' %}" alt="logo">
+                </div>
+                <div class="logotxt">
+                    <span id="logotxtid">Psych</span>buddy
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li id="currentPage"><a href="homepage">Home</a></li>
+                        <li><a href="GIA">GIA</a></li>
+                        <li id="resources">Resources
+                        <div class="resources-menu">
+                            <ul>
+                                <li><a href="sessions">Sessions</a></li><br>
+                                <a href="forum"><li>Forum</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="extras">Extras
+                        <div class="extras-menu">
+                            <ul>
+                            <li><a href="wellnessLog">Journal</a></li><br>
+                            <li>Tips</li>
+                            <a href="news"><li>News</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="therapist">Therapist</li>
+                        <a href="aboutus"><li>About Us</li></a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    
+        <main>
+            <div class="wellLogDir">
+                <div class="log-img">
+                    <img src="{%static 'img/logdir.png' %}" alt="journal-img">
+                    </div>
+                    <div class="log-desc">
+                        <h2>Welcome to your Wellness Log section!</h2>
+                        <span>Here, you can review all of your past entries, tracking your daily thoughts, emotions, and experiences over time. This feature allows you to reflect on your mental wellness journey, identify patterns, and gain deeper insights into your emotional well-being. Whether it's a good day or a challenging one, every log helps you stay connected with yourself. Take a moment to look back and see how far you've come!</span>
+                        <br><p>Action: </p><a href="wellnessLogFileCreator"><button>Generate File</button></a>
+                        <h3>User Details</h3>
+                        {% if data %}
+                        <table>
+                            <tr>
+                                <th>Fields</th>
+                                <th>Data</th>
+                            </tr>
+                            {% for i,j in data %}
+                            <tr>
+                                <td id="sub">{{i}}</td>
+                                <td id="dataField">{{j}}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        {%else%}
+                        <p>No Data Found</p>
+                        {%endif%}
+                        </div>
+            </div>
+        </main>
+        {%if data2%}
+        <div class="welllogs" id="wellnesslog">
+            
+            {%for data in data2%}
+            <div class="mylogs">
+                <h3>Mylog {{data.no}}</h3>
+            <p>Time: {{data.time}}</p>
+            <p>Date: {{data.date}}</p>
+            <details><summary>Description:</summary><p>{{data.logmsg}}</p></details>
+        </div>
+        {%endfor%}
+        
+    </div>
+    {%else%}
+    <p>No Record Found!</p>
+    {%endif%}
+        {{alert|safe}}
+        <div class="footer">
+            <div class="caption">
+                <h3>Follow Me On</h3>
+            </div>
+            <div class="social-logos">
+                <a href="whatsapp" target="_blank"><img src="{% static 'img/whatsapp.png' %}" alt="whatsapp" id="whatsapp"></a>
+                <a href="instagram" target="_blank"><img src="{% static 'img/instagram.png' %}" alt="instagram" id="instagram"></a>
+                <a href="facebook" target="_blank"><img src="{% static 'img/facebook.png' %}" alt="facebook" id="facebook"></a>
+            </div>
+            <div class="creator-msg">
+                <p>Crafted with <span id="heart">❤️</span> by GT</p>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

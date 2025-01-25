@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Relaxation Sessions</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body id="psychbody">
+        <nav class="navbarDiv">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="{% static 'img/psychbuddy.png' %}" alt="logo">
+                </div>
+                <div class="logotxt">
+                    <span id="logotxtid">Psych</span>buddy
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li id="currentPage"><a href="homepage">Home</a></li>
+                        <li><a href="GIA">GIA</a></li>
+                        <li id="resources">Resources
+                        <div class="resources-menu">
+                            <ul>
+                                <li><a href="sessions">Video Sessions</a></li>
+                                <li><a href="relaxation">Audio Therapy</a></li>
+                                <a href="forum"><li>Forum</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="extras">Extras
+                        <div class="extras-menu">
+                            <ul>
+                            <li><a href="wellnessLog">Journal</a></li><br>
+                            <li><a href="tips">Tips</a></li>
+                            <a href="news"><li>News</li></a>
+                            <a href="YM"><li>Yoga & Meditation</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="therapist">Therapist</li>
+                        <a href="aboutus"><li>About Us</li></a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    
+        <main>
+            <div class="relax-flex">
+                <div class="RFlex1">
+                <h2><span>Mind</span> Relaxation Therapy</h2>
+                <p>Psychbuddy offers a range of carefully curated stress relaxation therapies designed to promote mental well-being and relieve stress. Our therapies include soothing nature audio resources, featuring calming sounds like ocean waves, forest birds, and gentle rainfall, ideal for meditative practices or quiet reflection. These audio therapies aim to create a peaceful space for users, helping them unwind, reduce anxiety, and find mental clarity amidst life's challenges.</p>
+                <p><span>Feel</span> free to explore and enjoy these resources!</p>
+            </div>
+                <div class="RFlex2">
+                    <img src="{%static 'img/relaxation.png'%}">
+                </div>
+            </div>
+            
+            <h2 id="audioHeading">Audio Resources</h2>
+            <div class="headphone-alert">
+            <img src="{%static 'img/headphone.png' %}" class="shake">
+            <h4>Kindly use headphone/earphones for best experience</h4>
+            </div>
+        </main>
+        
+        <div class="flexbox">
+            {% if dictionary %}
+            {% for data in dictionary %}
+            <div class="fbox">
+                <img src="{% static data.ther_img %}">
+                <h3>{{data.ther_name}}</h3>
+                <audio controls>
+                    <source src="{% static data.ther_path %}"/>
+                </audio>
+                <details>
+                <summary>Description</summary>
+                <p>{{data.ther_desc}}</p>
+                </details>
+            </div>
+            {%endfor%}
+            {%else%}
+            <p>No Data Found</p>
+            {%endif%}
+        </div>
+        <div class="footer">
+            <div class="caption">
+                <h3>Follow Me On</h3>
+            </div>
+            <div class="social-logos">
+                <a href="whatsapp" target="_blank"><img src="{% static 'img/whatsapp.png' %}" alt="whatsapp" id="whatsapp"></a>
+                <a href="instagram" target="_blank"><img src="{% static 'img/instagram.png' %}" alt="instagram" id="instagram"></a>
+                <a href="facebook" target="_blank"><img src="{% static 'img/facebook.png' %}" alt="facebook" id="facebook"></a>
+            </div>
+            <div class="creator-msg">
+                <p>Crafted with <span id="heart">❤️</span> by GT</p>
+            </div>
+        </div>
+    </body>
+</html>

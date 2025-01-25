@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Psychbuddy Reading Resources</title>
+        <link rel="icon" type="image/png" href="{% static 'img/psychbuddy.png' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body id="psychbody">
+        <nav class="navbarDiv">
+            <div class="navbar">
+                <div class="logo">
+                    <img src="{% static 'img/psychbuddy.png' %}" alt="logo">
+                </div>
+                <div class="logotxt">
+                    <span id="logotxtid">Psych</span>buddy
+                </div>
+                <div class="nav-links">
+                    <ul>
+                        <li id="currentPage"><a href="homepage">Home</a></li>
+                        <li><a href="GIA">GIA</a></li>
+                        <li id="resources">Resources
+                        <div class="resources-menu">
+                            <ul>
+                                <li><a href="sessions">Video Sessions</a></li>
+                                <li><a href="relaxation">Audio Therapy</a></li>
+                                <a href="forum"><li>Forum</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="extras">Extras
+                        <div class="extras-menu">
+                            <ul>
+                            <li><a href="wellnessLog">Journal</a></li><br>
+                            <li><a href="tips">Tips</a></li>
+                            <a href="news"><li>News</li></a>
+                            <a href="YM"><li>Yoga & Meditation</li></a>
+                            </ul>
+                        </div>
+                    </li>
+                        <li id="therapist">Therapist</li>
+                        <a href="aboutus"><li>About Us</li></a>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    
+        <main>
+            <div class="books-section">
+                <div class="books-info">
+                    <h2><span>Psych</span>buddy Reading Resources</h2>
+                    <p>At <span>Psych</span>buddy, we understand that managing stress is essential for maintaining mental well-being. Our curated collection of mental health reading resources provides valuable insights and practical strategies to help you navigate life's challenges. Explore comprehensive e-books and guides that cover various aspects of stress management, mindfulness, and self-care practices, all designed to offer practical advice and actionable steps you can incorporate into your daily routine. Stay informed with the latest research findings and expert articles on mental health, covering topics such as stress reduction techniques, the impact of stress on mental health, and the importance of seeking help when needed. Engage with interactive self-help worksheets that encourage self-reflection and personal growth, helping you identify stress triggers, set goals, and develop coping strategies tailored to your unique needs. Reading about mental health can empower you with knowledge and equip you with tools to handle stress more effectively.</p>
+                    <a href="#books"><button>Explore More...</button></a>
+                </div>
+                <div class="books-img">
+                    <img src="{%static 'img/books.png'%}">
+                </div>
+            </div>
+        </main>
+        <h2 id="books">Top Reading Resources</h2>
+        <div class="books-container">
+            {%if mydata%}
+            {% for trav in mydata %}
+            <div class="books">
+                <a href="{%static trav.bpath %}"><img src="{%static trav.bcover %}"></a>
+                <h3>{{trav.bname}}</h3><br>
+                <p><b>Author: </b>{{trav.bauthor}}</p>
+                <p><b>Published Year: </b>{{trav.bpyear}}</p>
+                <p><b>Best For: </b>{{trav.bestfor}}</p>
+                <p><b>Description: </b><br>{{trav.bdesc}}</p>
+            </div>
+            {%endfor%}
+            {%else%}
+            <p>No Data Found..!</p>
+            {%endif%}
+        </div>
+            
+        <div class="footer">
+            <div class="caption">
+                <h3>Follow Me On</h3>
+            </div>
+            <div class="social-logos">
+                <a href="whatsapp" target="_blank"><img src="{% static 'img/whatsapp.png' %}" alt="whatsapp" id="whatsapp"></a>
+                <a href="instagram" target="_blank"><img src="{% static 'img/instagram.png' %}" alt="instagram" id="instagram"></a>
+                <a href="facebook" target="_blank"><img src="{% static 'img/facebook.png' %}" alt="facebook" id="facebook"></a>
+            </div>
+            <div class="creator-msg">
+                <p>Crafted with <span id="heart">❤️</span> by GT</p>
+            </div>
+        </div>
+        <script>
+            document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>
