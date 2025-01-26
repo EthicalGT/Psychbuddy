@@ -1,4 +1,4 @@
-PsychBuddy: Your Mental Wellness Hub 🧠
+PsychBuddy: Your Mental Health Companion 🧠
 ✨ What is PsychBuddy?
 PsychBuddy is a friendly online platform designed to support your mental well-being.
 ✨ What can you find here?
