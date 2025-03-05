@@ -54,7 +54,7 @@ def OTP(request):
             database='psychbuddy'
         )
         try:
-            yag = yagmail.SMTP('mypyschbuddy@gmail.com', 'pewcrroshhqeqalf')
+            yag = yagmail.SMTP('your_email', 'your_password')
             otp = str(random.randint(100000, 999999))
             subject = 'Psychbuddy Email Verification'
             body = f'Dear user, your OTP for Psychbuddy verification is {otp}'
